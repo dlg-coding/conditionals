@@ -38,7 +38,7 @@ import random
 score = 0
 # create a variable named rounds that stores how many rounds have passed
 rounds = 0
-while rounds != 3:
+while rounds != 5:
     # we create a variable which stores the number chosen by the program
     chosen_num = 0
     # we set chosen_num to a random number between 1 and 10
@@ -55,10 +55,10 @@ while rounds != 3:
         guess = input()
         # check if the user's guess equals the chosen number
         if guess == chosen_num:
-            score = score - 1
+            score = score + 10
             print("Wow you guessed right!")
         else:
-            score = score + 10
+            score = score - 1
             print("Guess again...")
     # add 1 to rounds
     rounds = rounds + 1
