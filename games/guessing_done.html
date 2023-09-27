@@ -1,0 +1,68 @@
+<head>
+    <link rel="stylesheet" href="../theme.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script> -->
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<script>
+    function copyCode() {
+        // Get the text field
+        var copyText = document.getElementById("code");
+
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(copyText.innerText);
+        // Alert the copied text
+        alert("Copied the text. Now paste the text in your coding workspace by right clicking or pressing Ctrl+V");
+    }
+</script>
+<body>
+    <h1>Intro to Coding Guessing Game Done</h1>
+    <ul>
+        <li><a href="../index.html">Homepage</a></li>
+        <li><a href="../assignments.html">Assignments</a></li>
+    </ul>
+    <p>This is the code for a guessing game. The program chooses a number between 0 and 10.</p>
+    <p>The user then guesses a number, and the program tells the user if they picked right. <a href="guessing_gameV2.html">This</a> is a secret program.</p>
+    <button onclick="copyCode()">Click this to copy the code below</button>
+    <pre><code class="python" id="code">
+### Instructions ###
+#
+# Copy and paste this code so that you can run it.
+# After running the program, look through the code line by line
+#
+
+import random
+
+
+# create a variable to keep track of the score
+score = 0
+# create a variable named rounds that stores how many rounds have passed
+rounds = 0
+while rounds != 3:
+    # we create a variable which stores the number chosen by the program
+    chosen_num = 0
+    # we set chosen_num to a random number between 1 and 10
+    chosen_num = str(random.randint(1, 10))
+    print("Round " + str(rounds))
+    # Print the user's current score
+    print("Your score is " + str(score))
+    print("Input a number between 1 and 10")
+    # create a guess variable to store the user's guess
+    guess = 0
+    # use a while loop to let the user guess until they guess correctly
+    while guess != chosen_num:
+        # have the user enter in a number (which is returned as a string)
+        guess = input()
+        # check if the user's guess equals the chosen number
+        if guess == chosen_num:
+            score = score - 1
+            print("Wow you guessed right!")
+        else:
+            score = score + 10
+            print("Guess again...")
+    # add 1 to rounds
+    rounds = rounds + 1
+# At the end of the program tell the user their score
+print("Your score was " + str(score))                       
+</code></pre>
+</body>
