@@ -1,0 +1,95 @@
+<head>
+    <link rel="stylesheet" href="../theme.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script> -->
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<script>
+    function copyCode() {
+        // Get the text field
+        var copyText = document.getElementById("code");
+
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(copyText.innerText);
+        // Alert the copied text
+        alert("Copied the text. Now paste the text in your coding workspace by right clicking or pressing Ctrl+V");
+    }
+</script>
+<body>
+    <h1>Intro to Coding Secret Pigs Game</h1>
+    <ul>
+        <li><a href="../index.html">Homepage</a></li>
+        <li><a href="../assignments.html">Assignments</a></li>
+    </ul>
+    <p>This is the game of Pigs!</p>
+    <p>On your turn, roll a 6 sided die. Add what you roll to your score for that round.</p>
+    <p>You can keep rolling to add to your round score.</p>
+    <p>If you roll a 1, you get zero points for the round, and your turn is over.</p>
+    <p>You may choose to end your turn and add your round points to your total score.</p>
+    <p>The first person to 100 points, wins.</p>
+    <button onclick="copyCode()">Click this to copy the code below</button>
+    <pre><code class="python" id="code">
+import random
+
+player1 = input("Player 1: ")
+player2 = input("Player 2: ")
+
+player1_score = 0
+player2_score = 0
+max_score = 100
+
+def print_score():
+    print()
+    print("Below is the score")
+    print(player1 + ": " + str(player1_score))
+    print(player2 + ": " + str(player2_score))
+    print()
+
+
+playing = True
+turn = player1
+turn_score = player1_score
+while playing == True:
+    print_score()
+    print("It's " + turn + "'s turn")
+    round_score = 0
+    rolling = True
+    while rolling == True:
+        roll_or_pass = None
+        while roll_or_pass != "p" and roll_or_pass != "r":
+            roll_or_pass = input("Enter 'r' to roll and 'p' to pass: ")
+
+        if roll_or_pass == "p":
+            rolling = False
+            print(turn + " got " + str(round_score) + " points this round.")
+        else:
+            score = random.randint(1, 6)
+            if score == 1:
+                print(turn + " rolled a 1! You get zero points this round :(")
+                round_score = 0
+                rolling = False
+            else:
+                round_score += score
+                print(turn + " rolled a " + str(score) + ". Their current score is " + str(round_score + turn_score))
+
+    if turn == player1:
+        player1_score += round_score
+        turn = player2
+        turn_score = player2_score
+    else:
+        player2_score += round_score
+        turn = player1
+        turn_score = player1_score
+        
+    if player1_score >= max_score or player2_score >= max_score:
+        winner = None
+        if player1_score > player2_score:
+            winner = player1
+        else:
+            winner = player2
+        print_score()
+        print(winner + " wins!")
+        print("Congratulations " + winner + "!")
+        playing = False                    
+</code></pre>
+</body>
