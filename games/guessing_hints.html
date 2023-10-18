@@ -1,0 +1,56 @@
+<head>
+    <link rel="stylesheet" href="../theme.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script> -->
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<script>
+    function copyCode() {
+        // Get the text field
+        var copyText = document.getElementById("code");
+
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(copyText.innerText);
+        // Alert the copied text
+        alert("Copied the text. Now paste the text in your coding workspace by right clicking or pressing Ctrl+V");
+    }
+</script>
+<body>
+    <h1>Intro to Coding Guessing With Hints</h1>
+    <ul>
+        <li><a href="../index.html">Homepage</a></li>
+        <li><a href="../assignments.html">Assignments</a></li>
+    </ul>
+    <p>This is the code for a guessing game. The program chooses a number between 1 and 1000.</p>
+    <p>The user then guesses a number, and the program tells the user if they picked right.</p>
+    <p>The program tells the user if they guessed too high or too low.</p>
+    <p>There is a way to play this such that you always guess right using 10 guesses at most.</p>
+    <button onclick="copyCode()">Click this to copy the code below</button>
+    <pre><code class="python" id="code">
+import random
+
+is_playing = True
+while is_playing == True:
+    guesses = 0
+    start = 1
+    end = 1000
+    print(f"Guess what number I am thinking of between {start}-{end}")
+    chosen = random.randint(start, end)
+    guess = 0
+    while guess != chosen:
+        guesses += 1
+        guess = int(input("Number: "))
+        if guess < chosen:
+            print(f"The number is higher than {guess}")
+        elif guess > chosen:
+            print(f"The number is lower than {guess}")
+        else:
+            print(f"Yes! I was thinking of the number {chosen}")
+
+    print(f"It took you {guesses} to guess the correct number. Do you want to play again?")
+    play_again = input("(y/n): ")
+    if play_again == 'n' or play_again == 'no' or play_again == 'No':
+        is_playing = False
+print("Thanks for playing!")                   
+</code></pre>
+</body>
